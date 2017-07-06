@@ -1,17 +1,41 @@
 <template>
 	<div id="app">
-		<div class="page-swipe" id="startAnimation">
-			<mt-swipe :auto="0" :continuous="false" @change="handleChange">
+		<!--
+        	作者：849237567@qq.com
+        	时间：2017-07-06
+        	描述：启动动画
+        -->
+		<div class="page-swipe" id="startAnimation" v-show="showStartAnimationType">
+			<mt-swipe :auto="0" :continuous="false" @change="startAnimationChange">
 				<mt-swipe-item class="slide">1</mt-swipe-item>
 				<mt-swipe-item class="slide">2</mt-swipe-item>
 				<mt-swipe-item class="slide">3</mt-swipe-item>
 			</mt-swipe>
 		</div>
+		<!--
+        	作者：849237567@qq.com
+        	时间：2017-07-06
+        	描述：关闭按钮
+        -->
+		<div id="close" v-show="showStartCloseType" @click="hideStartAnimation">
+			<span>关闭</span>
+		</div>
+		<!--
+        	作者：849237567@qq.com
+        	时间：2017-07-06
+        	描述：启动按钮
+        -->
+		<div id="start" v-show="showStartCloseType" @click="hideStartAnimation">
+			<span>启动</span>
+		</div>
+
 		<router-view></router-view>
 	</div>
 </template>
 
 <script>
+	import { mapGetters, mapActions } from 'vuex'
+
 	export default {
 		name: 'app',
 		components: {
@@ -22,70 +46,55 @@
 				startAnimationCount: ''
 			}
 		},
-		beforeCreate: function() {
-//			console.group('beforeCreate 创建前状态===============》');
-//			console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
-//			console.log("%c%s", "color:red", "data   : " + this.$data); //undefined 
-//			console.log("%c%s", "color:red", "message: " + this.message)
-		},
-		created: function() {
-//			console.group('created 创建完毕状态===============》');
-//			console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
-//			console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化 
-//			console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
-		},
-		beforeMount: function() {
-//			console.group('beforeMount 挂载前状态===============》');
-//			console.log("%c%s", "color:red", "el     : " + (this.$el)); //已被初始化
-//			console.log(this.$el);
-//			console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化  
-//			console.log("%c%s", "color:red", "message: " + this.message); //已被初始化  
+		methods: {
+			startAnimationChange(index) {
+				this.$store.dispatch('startAnimationChange', index);
+			},
+			showStartAnimation() {
+				this.$store.dispatch('showStartAnimation');
+			},
+			hideStartAnimation() {
+				this.$store.dispatch('hideStartAnimation');
+			},
+			showStartClose() {
+				this.$store.dispatch('showStartClose');
+			},
+			hideStartClose() {
+				this.$store.dispatch('hideStartClose');
+			}
 		},
 		mounted: function() {
-			//this.startAnimationCount = this.getstartAnimationCount();			
-			var aaa = $("#startAnimation");
-			console.log(aaa);			
-			var count = $("#startAnimation").find('mt-swipe-item').length;
-			this.startAnimationCount = count;
-			alert(this.startAnimationCount);
+			//
+			this.$store.dispatch('hideStartClose');
 		},
-		beforeUpdate: function() {
-//			console.group('beforeUpdate 更新前状态===============》');
-//			console.log("%c%s", "color:red", "el     : " + this.$el);
-//			console.log(this.$el);
-//			console.log("%c%s", "color:red", "data   : " + this.$data);
-//			console.log("%c%s", "color:red", "message: " + this.message);
-		},
-		updated: function() {
-//			console.group('updated 更新完成状态===============》');
-//			console.log("%c%s", "color:red", "el     : " + this.$el);
-//			console.log(this.$el);
-//			console.log("%c%s", "color:red", "data   : " + this.$data);
-//			console.log("%c%s", "color:red", "message: " + this.message);
-		},
-		beforeDestroy: function() {
-//			console.group('beforeDestroy 销毁前状态===============》');
-//			console.log("%c%s", "color:red", "el     : " + this.$el);
-//			console.log(this.$el);
-//			console.log("%c%s", "color:red", "data   : " + this.$data);
-//			console.log("%c%s", "color:red", "message: " + this.message);
-		},
-		destroyed: function() {
-//			console.group('destroyed 销毁完成状态===============》');
-//			console.log("%c%s", "color:red", "el     : " + this.$el);
-//			console.log(this.$el);
-//			console.log("%c%s", "color:red", "data   : " + this.$data);
-//			console.log("%c%s", "color:red", "message: " + this.message)
-		},
-		methods: {
-			getstartAnimationCount() {
-				var count = $("#startAnimation").find('mt-swipe-item').length;
-				alert(count);
-				return count;
+		computed: mapGetters([
+			
+			'startAnimationIndex',
+			'showStartAnimationType',
+			'showStartCloseType',
+			'showHeaderType'
+		]),
+		watch: {
+			// 深度 watcher
+			startAnimationIndex: {
+				handler: function(val, oldVal) {
+					if(val === 2) {
+						this.$store.dispatch('showStartClose');
+					}else{
+						this.$store.dispatch('hideStartClose');
+					}
+				},
+				deep: true
 			},
-			handleChange(index) {
-				alert(index);
+			showStartAnimationType: {
+				handler: function(val, oldVal) {
+					if(val == false) {
+						this.$store.dispatch('hideStartClose');
+					}
+				},
+				deep: true
 			}
+			
 		}
 	}
 </script>
@@ -97,14 +106,13 @@
 		top: 0;
 		left: 0;
 		text-align: center;
-		color: #FFFFFF;
 		position: absolute;
 		overflow: hidden;
 	}
 </style>
 <style scoped>
 	.page-swipe {
-		position: absolute;
+		position: relative;
 		width: 100%;
 		height: 100%;
 		background: #FFFFFF;
@@ -126,5 +134,29 @@
 		width: 100%;
 		height: 100%;
 		background-color: #0089dc;
+	}
+	
+	#close {
+		position: fixed;
+		text-align: center;
+		color: #000000;
+		z-index: 9990;
+		top: 20px;
+		right: 20px;
+	}
+	
+	#start {
+		position: fixed;
+		background: red;
+		z-index: 9990;
+		text-align: center;
+		width: 40%;
+		height: 30px;
+		bottom: 15%;
+		left: 30%;
+	}
+	
+	span {
+		line-height: 20px;
 	}
 </style>
