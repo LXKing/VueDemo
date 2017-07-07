@@ -3,18 +3,22 @@
 	<div class="GuidePage">
 		<div class="swiper-container">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide"><img src="http://lxking.xyz/img/12.png" alt="" /></div>
+				<!--<div class="swiper-slide"><img src="http://lxking.xyz/img/12.png" alt="" /></div>
 				<div class="swiper-slide"><img src="http://lxking.xyz/img/2.jpg" alt="" /></div>
 				<div class="swiper-slide"><img src="http://lxking.xyz/img/2.jpg" alt="" /></div>
-				<div class="swiper-slide">
-					<img src="http://lxking.xyz/img/12.png" alt="" />
-				</div>
+				<div class="swiper-slide"><img src="http://lxking.xyz/img/12.png" alt="" /></div>-->
+				
+								<div class="swiper-slide"></div>
+				<div class="swiper-slide"></div>
+				<div class="swiper-slide"></div>
+				<div class="swiper-slide"></div>
 			</div>
-		<a href="#" class="index" v-show="showStartCloseType" @click="setFirstUseApp">进入首页</a>
-		<a href="#" class="close" v-show="showStartCloseType" @click="setFirstUseApp">关闭</a>
+
 			<!-- Add Pagination -->
 			<div class="swiper-pagination"></div>
 		</div>
+			<a href="#" class="index" v-show="showStartCloseType" @click="setFirstUseApp">进入首页</a>
+			<a href="#" class="close" v-show="showStartCloseType" @click="setFirstUseApp">关闭</a>		
 	</div>
 </template>
 
@@ -36,10 +40,12 @@
 				this.$store.dispatch('hideStartClose');
 			},
 			//设置首次使用标识，关闭引导页并跳转
-			setFirstUseApp: function(){				
+			setFirstUseApp: function() {
 				localStorage.setItem("isFirstUseApp", 1);
 				this.$store.dispatch('hideGuidePage');
-				
+//				this.$router.push({
+//					path: '/home'
+//				})
 			}
 		},
 		mounted: function() {
@@ -86,17 +92,20 @@
 </script>
 
 <style scoped>
+
 	a {
 		text-decoration: none;
 	}
 	
 	.swiper-container {
-		width: 100%;
+			width: 100%;
 		height: 100%;
+
 		position: fixed;
 	}
 	
 	.swiper-slide {
+		width: 100%;
 		text-align: center;
 		font-size: 18px;
 		background: #fff;
@@ -113,6 +122,7 @@
 		-ms-flex-align: center;
 		-webkit-align-items: center;
 		align-items: center;
+
 	}
 	
 	.swiper-slide img {
@@ -121,14 +131,14 @@
 	}
 	
 	.index {
-		z-index: 9990;
+		z-index: 999;
 		display: inline-block;
 		width: 40%;
 		height: 40px;
 		background: #E09136;
 		line-height: 40px;
 		text-decoration: none;
-		position: absolute;
+		position: fixed;
 		bottom: 40px;
 		left: 30%;
 	}
@@ -136,7 +146,7 @@
 	.close {
 		z-index: 999;
 		color: #fff;
-		position: absolute;
+		position: fixed;
 		top: 18px;
 		right: 20px;
 	}

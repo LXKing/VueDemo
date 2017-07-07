@@ -4,11 +4,10 @@ import getters from './getters'
 const state = {
 	showStartCloseType: false,
 	showGuidePageType: true,
-	
+
 	showHeaderType: true,
 	//startAnimationIndex: 0,
 	showStartAnimationType: true
-	
 
 }
 
@@ -19,15 +18,14 @@ const mutations = {
 	[types.HIDESTARTCLOSE](state) {
 		state.showStartCloseType = false;
 	},
-	
+
 	[types.SHOWGUIDEPAGE](state) {
 		state.showGuidePageType = true;
 	},
 	[types.HIDEGUIDEPAGE](state) {
 		state.showGuidePageType = false;
 	},
-	
-	
+
 	[types.STARTANIMATIONCHANGECHANGE](state, index) {
 		state.startAnimationIndex = index;
 	},

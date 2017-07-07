@@ -6,11 +6,22 @@ Vue.use(Router)
 
 export default new Router({
 	mode: 'history',
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home
-    }
-  ]
+	// 滚动条滚动的行为，不加这个默认就会记忆原来滚动条的位置
+	scrollBehavior: () => ({　　　　
+		y: 0　　
+	}),
+	routes: [{
+			path: '/home',
+			name: 'Home',
+			component: Home
+		},
+		{
+			path: '/',
+			redirect: '/home'
+		},
+		{
+			path: '*',
+			redirect: '/home'
+		}
+	]
 })

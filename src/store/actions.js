@@ -1,13 +1,13 @@
 import * as types from './types'
 
 export default {
-//显示进入首页/关闭
+	//显示进入首页/关闭
 	showStartClose: ({
 		commit
 	}) => {
 		commit(types.SHOWSTARTCLOSE);
 	},
-//隐藏进入首页/关闭
+	//隐藏进入首页/关闭
 	hideStartClose: ({
 		commit
 	}) => {
@@ -25,7 +25,6 @@ export default {
 	}) => {
 		commit(types.HIDEGUIDEPAGE);
 	},
-
 
 	//启动动画改变
 	startAnimationChange: ({
@@ -45,7 +44,6 @@ export default {
 	}) => {
 		commit(types.HIDESTARTANIMATION);
 	},
-
 
 	showHeader: ({
 		commit

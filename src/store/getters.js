@@ -2,13 +2,10 @@ export default {
 	showStartCloseType: (state) => {
 		return state.showStartCloseType;
 	},
-		showGuidePageType: (state) => {
+	showGuidePageType: (state) => {
 		return state.showGuidePageType;
 	},
 
-	
-	
-	
 	startAnimationIndex: (state) => {
 		return state.startAnimationIndex;
 	},
