@@ -1,6 +1,31 @@
 import * as types from './types'
 
 export default {
+//显示进入首页/关闭
+	showStartClose: ({
+		commit
+	}) => {
+		commit(types.SHOWSTARTCLOSE);
+	},
+//隐藏进入首页/关闭
+	hideStartClose: ({
+		commit
+	}) => {
+		commit(types.HIDESTARTCLOSE);
+	},
+	//显示引导页
+	showGuidePage: ({
+		commit
+	}) => {
+		commit(types.SHOWGUIDEPAGE);
+	},
+	//隐藏引导页
+	hideGuidePage: ({
+		commit
+	}) => {
+		commit(types.HIDEGUIDEPAGE);
+	},
+
 
 	//启动动画改变
 	startAnimationChange: ({
@@ -21,17 +46,6 @@ export default {
 		commit(types.HIDESTARTANIMATION);
 	},
 
-	showStartClose: ({
-		commit
-	}) => {
-		commit(types.SHOWSTARTCLOSE);
-	},
-
-	hideStartClose: ({
-		commit
-	}) => {
-		commit(types.HIDESTARTCLOSE);
-	},
 
 	showHeader: ({
 		commit

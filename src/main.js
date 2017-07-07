@@ -6,8 +6,13 @@ import router from './router'
 import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css';
 import store from './store'
+import GuidePage from './components/guidePage'
+
 
 Vue.use(Mint);
+Vue.use(GuidePage);
+
+
 
 Vue.config.productionTip = false
 
