@@ -1,6 +1,7 @@
 <template>
 	<div id="app">
 		<GuidePage v-show="showGuidePageType"></GuidePage>
+
 		<router-view></router-view>
 
 	</div>
@@ -16,7 +17,7 @@
 		},
 		data() {
 			return {
-				//startAnimationCount: ''
+
 			}
 		},
 		methods: {
@@ -78,15 +79,13 @@
 
 <style>
 	#app {
-
-position: absolute;
-		top: 0;
-		left: 0;
-
-		text-align: center;
 		width: 100%;
 		height: 100%;
-
-
+		position: absolute;
+		top: 0;
+		left: 0;
+		text-align: center;
+		overflow: hidden;
+		/*这是底层  main*/
 	}
 </style>

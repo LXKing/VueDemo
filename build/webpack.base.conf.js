@@ -3,7 +3,6 @@ var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 
-var webpack = require("webpack")
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -29,12 +28,8 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-       'assets': resolve('src/assets'),
-      'components': resolve('src/components'),
-      // 2. 定义别名和插件位置
-      'jquery': 'jquery',
-      'swiper': 'swiper'
-      
+      'assets': resolve('src/assets'),
+      'components': resolve('src/components')
     }
   },
   module: {
@@ -66,18 +61,5 @@ module.exports = {
         }
       }
     ]
-  },
-plugins: [
-    // 3. 配置全局使用 jquery
-    new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery",
-        jquery: "jquery",
-        "window.jQuery": "jquery"
-    }),
-    new webpack.ProvidePlugin({
-        swiper: "swiper",
-        "window.swiper": "swiper"
-    })
-  ]
+  }
 }

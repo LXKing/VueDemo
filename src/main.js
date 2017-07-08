@@ -9,12 +9,13 @@ import store from './store'
 import GuidePage from './components/guidePage'
 import axios from 'axios'
 
-import $ from 'jquery'
-import swiper from 'swiper'
+import { Indicator, Toast } from 'mint-ui';
+
 
 Vue.use(Mint);
 Vue.use(GuidePage);
 Vue.config.productionTip = false
+
 
 //axios配置
 axios.interceptors.request.use(function(request){
@@ -37,10 +38,10 @@ axios.defaults.baseURL = 'http://localhost:8088/';
 
 Vue.prototype.$http = axios;
 
-require('./assets/css/base.css');
-require('./assets/css/swiper.min.css');
-//require('./assets/js/jquery.min.js');
-//require('./assets/js/swiper.min.js');
+require('../static/css/base.css');
+require('../static/css/swiper.min.css');
+require('../static/js/jquery.min.js');
+require('../static/js/swiper.min.js');
 
 /* eslint-disable no-new */
 new Vue({
